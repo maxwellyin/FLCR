@@ -1,0 +1,226 @@
+change loss function, use neighbor - neg_pred{1,2,3}
+step: 299
+clusterID:0
+2022-02-20 22:53:54.499468
+2022-02-20 22:56:40.707370
+Recall: [0.392, 0.5, 0.672, 0.747, 0.811]
+MRR: 0.27965393185356535
+MAP: 0.23993796296296283
+nDCG: 0.3122320537222583
+clusterID:1
+2022-02-20 22:56:50.907849
+2022-02-20 22:59:46.544577
+Recall: [0.344, 0.471, 0.688, 0.747, 0.813]
+MRR: 0.2416169275469462
+MAP: 0.20591107142857112
+nDCG: 0.27708097328745834
+clusterID:2
+2022-02-20 23:00:52.929256
+2022-02-20 23:03:47.049897
+Recall: [0.367, 0.486, 0.669, 0.762, 0.816]
+MRR: 0.25311797845924017
+MAP: 0.2183122288359786
+nDCG: 0.2904033413108762
+clusterID:3
+2022-02-20 23:03:57.254457
+2022-02-20 23:06:43.194111
+Recall: [0.319, 0.429, 0.624, 0.715, 0.774]
+MRR: 0.22028170243089948
+MAP: 0.19238401455026446
+nDCG: 0.2542294897999046
+clusterID:4
+2022-02-20 23:06:53.562561
+2022-02-20 23:09:51.079267
+Recall: [0.267, 0.376, 0.573, 0.656, 0.738]
+MRR: 0.19600432134310009
+MAP: 0.16772708994708987
+nDCG: 0.22197081663145665
+group0:
+['Convolutional Neural Networks', 'Deep Learning', 'Deep Residual Learning for Image Recognition', 'ImageNet Classification with Deep Convolutional Neural Networks', 'Convolutional Neural Networks', 'A Convolutional Neural Network for Modelling Sentences', 'Very Deep Convolutional Networks for Large-Scale Image Recognition', 'Discriminative Unsupervised Feature Learning with Convolutional Neural Networks', 'Deep learning', 'Gradient-based learning applied to document recognition']
+group1:
+['Tying Word Vectors and Word Classifiers: A Loss Framework for Language Modeling', 'On the importance of initialization and momentum in deep learning', 'Exploring the limits of language modeling', 'Skip-Thought Vectors', 'Pointer Sentinel Mixture Models', 'Quadratic Features and Deep Architectures for Chunking', 'Rotational Unit of Memory', 'Empirical evaluation of gated recurrent neural networks on sequence modeling', 'Regularizing and Optimizing LSTM Language Models', 'ADADELTA: An Adaptive Learning Rate Method']
+group2:
+['Pointer networks', "The Goldilocks Principle: Reading Children's Books with Explicit Memory Representations", 'Adding Gradient Noise Improves Learning for Very Deep Networks', 'ADADELTA: An Adaptive Learning Rate Method', 'Regularizing and Optimizing LSTM Language Models', 'Long short-term memory', 'Tying Word Vectors and Word Classifiers: A Loss Framework for Language Modeling', 'Conducting Credit Assignment by Aligning Local Representations', 'The Neural Noisy Channel', 'Online and linear-time attention by enforcing monotonic alignments']
+group3:
+['Pointer Sentinel Mixture Models', 'Adding Gradient Noise Improves Learning for Very Deep Networks', 'A theoretically grounded application of dropout in recurrent neural networks', "Don't decay the learning rate, increase the batch size", 'Improving neural networks by preventing co-adaptation of feature detectors', 'Pointer networks', 'Curriculum learning', 'DoReFa-Net: Training Low Bitwidth Convolutional Neural Networks with Low Bitwidth Gradients', 'Adjusting for Dropout Variance in Batch Normalization and Weight Initialization', 'Online and linear-time attention by enforcing monotonic alignments']
+group4:
+['A Hierarchical Neural Autoencoder for Paragraphs and Documents', 'Regularizing and Optimizing LSTM Language Models', 'Self-Adaptive Hierarchical Sentence Model', 'Pointer networks', 'On the importance of initialization and momentum in deep learning', 'Sequence to Sequence Learning with Neural Networks', 'Improving neural networks by preventing co-adaptation of feature detectors', 'Reference-Aware Language Models', 'Improving generalization performance using double backpropagation', 'The Fixed-Size Ordinally-Forgetting Encoding Method for Neural Network Language Models']
+group 0:
+['Convolutional Neural Networks', 'Deep Learning', 'Deep Residual Learning for Image Recognition', 'ImageNet Classification with Deep Convolutional Neural Networks', 'Convolutional Neural Networks', 'A Convolutional Neural Network for Modelling Sentences', 'Very Deep Convolutional Networks for Large-Scale Image Recognition', 'Discriminative Unsupervised Feature Learning with Convolutional Neural Networks', 'Deep learning', 'Gradient-based learning applied to document recognition']
+group 1:
+['Tying Word Vectors and Word Classifiers: A Loss Framework for Language Modeling', 'On the importance of initialization and momentum in deep learning', 'Exploring the limits of language modeling', 'Skip-Thought Vectors', 'Pointer Sentinel Mixture Models', 'Quadratic Features and Deep Architectures for Chunking', 'Rotational Unit of Memory', 'Empirical evaluation of gated recurrent neural networks on sequence modeling', 'Regularizing and Optimizing LSTM Language Models', 'ADADELTA: An Adaptive Learning Rate Method']
+group 2:
+['Pointer networks', "The Goldilocks Principle: Reading Children's Books with Explicit Memory Representations", 'Adding Gradient Noise Improves Learning for Very Deep Networks', 'Long short-term memory', 'Conducting Credit Assignment by Aligning Local Representations', 'The Neural Noisy Channel', 'Online and linear-time attention by enforcing monotonic alignments', 'Rectified Linear Units Improve Restricted Boltzmann Machines', 'Self-Paced Learning for Latent Variable Models', 'A Hierarchical Neural Autoencoder for Paragraphs and Documents']
+group 3:
+['A theoretically grounded application of dropout in recurrent neural networks', "Don't decay the learning rate, increase the batch size", 'Improving neural networks by preventing co-adaptation of feature detectors', 'Curriculum learning', 'DoReFa-Net: Training Low Bitwidth Convolutional Neural Networks with Low Bitwidth Gradients', 'Adjusting for Dropout Variance in Batch Normalization and Weight Initialization', 'Memory-based Parameter Adaptation', 'Layer Normalization', 'Optimal Brain Damage', 'Semi-supervised Sequence Learning']
+group 4:
+['Self-Adaptive Hierarchical Sentence Model', 'Sequence to Sequence Learning with Neural Networks', 'Reference-Aware Language Models', 'Improving generalization performance using double backpropagation', 'The Fixed-Size Ordinally-Forgetting Encoding Method for Neural Network Language Models', 'Improved Semantic Representations From Tree-Structured Long Short-Term Memory Networks', 'Transfer Learning for Sequences via Learning to Collocate', 'Syntactic Manipulation for Generating more Diverse and Interesting Texts', 'A ‘Self-Referential’ Weight Matrix', 'Modeling Localness for Self-Attention Networks']
+
+step: 199
+clusterID:0
+2022-02-21 10:01:59.982373
+2022-02-21 10:08:16.907693
+Recall: [0.38, 0.49, 0.677, 0.755, 0.811]
+MRR: 0.2644696480081862
+MAP: 0.22953657407407388
+nDCG: 0.30058332929561987
+clusterID:1
+2022-02-21 10:08:35.867896
+2022-02-21 10:15:15.092085
+Recall: [0.346, 0.487, 0.685, 0.749, 0.806]
+MRR: 0.24554466447154144
+MAP: 0.21365531746031727
+nDCG: 0.2856877480758439
+clusterID:2
+2022-02-21 10:15:33.970811
+2022-02-21 10:19:53.567399
+Recall: [0.367, 0.476, 0.659, 0.738, 0.804]
+MRR: 0.2545202538535026
+MAP: 0.22275685185185165
+nDCG: 0.2904897224041343
+clusterID:3
+2022-02-21 10:20:12.801078
+2022-02-21 10:25:51.822274
+Recall: [0.318, 0.433, 0.631, 0.715, 0.778]
+MRR: 0.22290374701670732
+MAP: 0.189718214285714
+nDCG: 0.25432460904166243
+clusterID:4
+2022-02-21 10:26:10.831403
+2022-02-21 10:30:26.535793
+Recall: [0.306, 0.424, 0.594, 0.695, 0.752]
+MRR: 0.21520739790868174
+MAP: 0.18485016534391513
+nDCG: 0.2481162951083889
+group0:
+['Deep Learning', 'Very Deep Convolutional Networks for Large-Scale Image Recognition', 'ImageNet Classification with Deep Convolutional Neural Networks', 'Deep Residual Learning for Image Recognition', 'On the State of the Art of Evaluation in Neural Language Models', 'Convolutional Neural Networks', 'Regularizing and Optimizing LSTM Language Models', "Google's Neural Machine Translation System: Bridging the Gap between Human and Machine Translation", 'Very deep convolutional networks for text classification', 'Unsupervised Word Discovery with Segmental Neural Language Models.']
+group1:
+['Tying Word Vectors and Word Classifiers: A Loss Framework for Language Modeling', 'Regularizing and Optimizing LSTM Language Models', 'On the importance of initialization and momentum in deep learning', 'Exploring the limits of language modeling', 'Practical Variational Inference for Neural Networks', 'Factorization tricks for LSTM networks', 'Factored Neural Language Models', 'On the Effective Use of Pretraining for Natural Language Inference', 'Stick-breaking variational autoencoders', 'ADADELTA: An Adaptive Learning Rate Method']
+group2:
+['Regularizing and Optimizing LSTM Language Models', 'Regularization Techniques to Improve Generalization', 'Adding Gradient Noise Improves Learning for Very Deep Networks', 'Learning Discrete Weights Using the Local Reparameterization Trick', 'Direct Output Connection for a High-Rank Language Model', 'Stick-breaking variational autoencoders', 'Variational dropout and the local reparameterization trick', 'ADADELTA: An Adaptive Learning Rate Method', "The Goldilocks Principle: Reading Children's Books with Explicit Memory Representations", 'Recurrent Neural Network Regularization']
+group3:
+['Adding Gradient Noise Improves Learning for Very Deep Networks', 'Direct Output Connection for a High-Rank Language Model', 'Pointer Sentinel Mixture Models', 'word2vec Parameter Learning Explained', 'Variational dropout and the local reparameterization trick', 'A theoretically grounded application of dropout in recurrent neural networks', 'Replicated Softmax: an Undirected Topic Model', 'Deep Variational Information Bottleneck', 'Learning Discrete Weights Using the Local Reparameterization Trick', 'On the importance of initialization and momentum in deep learning']
+group4:
+['Regularizing and Optimizing LSTM Language Models', 'On the importance of initialization and momentum in deep learning', 'Learning Discrete Weights Using the Local Reparameterization Trick', "word2vec Explained: deriving Mikolov et al.'s negative-sampling word-embedding method.", 'word2vec Parameter Learning Explained', 'Regularization Techniques to Improve Generalization', 'Direct Output Connection for a High-Rank Language Model', 'Adding Gradient Noise Improves Learning for Very Deep Networks', 'Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks', 'Recurrent Neural Network Regularization']
+group 0:
+['Deep Learning', 'Very Deep Convolutional Networks for Large-Scale Image Recognition', 'ImageNet Classification with Deep Convolutional Neural Networks', 'Deep Residual Learning for Image Recognition', 'On the State of the Art of Evaluation in Neural Language Models', 'Convolutional Neural Networks', 'Regularizing and Optimizing LSTM Language Models', "Google's Neural Machine Translation System: Bridging the Gap between Human and Machine Translation", 'Very deep convolutional networks for text classification', 'Unsupervised Word Discovery with Segmental Neural Language Models.']
+group 1:
+['Tying Word Vectors and Word Classifiers: A Loss Framework for Language Modeling', 'On the importance of initialization and momentum in deep learning', 'Exploring the limits of language modeling', 'Practical Variational Inference for Neural Networks', 'Factorization tricks for LSTM networks', 'Factored Neural Language Models', 'On the Effective Use of Pretraining for Natural Language Inference', 'Stick-breaking variational autoencoders', 'ADADELTA: An Adaptive Learning Rate Method', 'Optimization as a Model for Few-Shot Learning']
+group 2:
+['Regularization Techniques to Improve Generalization', 'Adding Gradient Noise Improves Learning for Very Deep Networks', 'Learning Discrete Weights Using the Local Reparameterization Trick', 'Direct Output Connection for a High-Rank Language Model', 'Variational dropout and the local reparameterization trick', "The Goldilocks Principle: Reading Children's Books with Explicit Memory Representations", 'Recurrent Neural Network Regularization', 'Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks', 'Learning language through pictures', 'Deep Variational Information Bottleneck']
+group 3:
+['Pointer Sentinel Mixture Models', 'word2vec Parameter Learning Explained', 'A theoretically grounded application of dropout in recurrent neural networks', 'Replicated Softmax: an Undirected Topic Model', 'Discovering Discrete Latent Topics with Neural Variational Inference', 'Deep Information Propagation', "word2vec Explained: deriving Mikolov et al.'s negative-sampling word-embedding method.", 'Layer Normalization', 'Improved variational autoencoders for text modeling using dilated convolutions', 'Identity Mappings in Deep Residual Networks']
+group 4:
+['On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima', 'On the Computational Inefficiency of Large Batch Sizes for Stochastic Gradient Descent', 'MuProp: Unbiased Backpropagation for Stochastic Neural Networks', 'Improving generalization performance using double backpropagation', 'Gated Word-Character Recurrent Language Model', 'Expectation Backpropagation: Parameter-Free Training of Multilayer Neural Networks with Continuous or Discrete Weights', 'Softmax-Margin CRFs: Training Log-Linear Models with Cost Functions', 'Online Batch Selection for Faster Training of Neural Networks', 'Sequence to Sequence Learning with Neural Networks', 'Learning to read irregular text with attention mechanisms']
+
+--------------------------------------------------------------------------------------------
+step: 299
+clusterID:0
+2022-02-19 16:51:07.590703
+2022-02-19 16:54:03.715967
+Recall: [0.337, 0.468, 0.655, 0.72, 0.779]
+MRR: 0.2281317041077074
+MAP: 0.19738785714285698
+nDCG: 0.2684059802314089
+clusterID:1
+2022-02-19 16:54:38.719218
+2022-02-19 16:57:34.170593
+Recall: [0.284, 0.406, 0.614, 0.709, 0.766]
+MRR: 0.20085883384016373
+MAP: 0.17432689153439143
+nDCG: 0.23381114004902723
+clusterID:2
+2022-02-19 16:57:45.413236
+2022-02-19 17:00:47.712810
+Recall: [0.28, 0.405, 0.604, 0.678, 0.749]
+MRR: 0.2031248684417667
+MAP: 0.17487027777777778
+nDCG: 0.23468280643289954
+clusterID:3
+2022-02-19 17:01:28.014718
+2022-02-19 17:04:30.795210
+Recall: [0.261, 0.37, 0.564, 0.657, 0.725]
+MRR: 0.1773686822325727
+MAP: 0.15157976190476194
+nDCG: 0.20798093295095324
+clusterID:4
+2022-02-19 17:05:06.297940
+2022-02-19 17:08:09.391901
+Recall: [0.243, 0.359, 0.543, 0.63, 0.709]
+MRR: 0.17151527224830002
+MAP: 0.14805713624338598
+nDCG: 0.20158909864706
+
+step: 199
+clusterID:0
+2022-02-20 15:44:40.310132
+2022-02-20 15:47:03.380017
+Recall: [0.338, 0.453, 0.645, 0.714, 0.784]
+MRR: 0.22033316036959985
+MAP: 0.19241770502645492
+nDCG: 0.2609212373688363
+clusterID:1
+2022-02-20 15:47:10.737845
+2022-02-20 15:49:33.993578
+Recall: [0.326, 0.429, 0.609, 0.711, 0.769]
+MRR: 0.20198911618678697
+MAP: 0.17172755952380936
+nDCG: 0.23969669250365688
+clusterID:2
+2022-02-20 15:49:41.421897
+2022-02-20 15:52:05.521111
+Recall: [0.271, 0.396, 0.589, 0.683, 0.749]
+MRR: 0.18709043500217004
+MAP: 0.15758591269841254
+nDCG: 0.21984306820281369
+clusterID:3
+2022-02-20 15:52:12.901362
+2022-02-20 15:54:36.744187
+Recall: [0.264, 0.374, 0.576, 0.648, 0.721]
+MRR: 0.17381292994461195
+MAP: 0.1482378637566136
+nDCG: 0.2063470882187239
+clusterID:4
+2022-02-20 15:54:44.094739
+2022-02-20 15:57:07.872041
+Recall: [0.246, 0.357, 0.552, 0.63, 0.709]
+MRR: 0.16498170079041483
+MAP: 0.1431812169312168
+nDCG: 0.19739579595851797
+
+tep: 249
+clusterID:0
+2022-02-20 16:18:41.842653
+2022-02-20 16:21:32.290791
+Recall: [0.32, 0.441, 0.644, 0.731, 0.792]
+MRR: 0.2181013321717297
+MAP: 0.19010456349206328
+nDCG: 0.2558780359090759
+clusterID:1
+2022-02-20 16:21:42.093584
+2022-02-20 16:24:32.663256
+Recall: [0.308, 0.43, 0.619, 0.707, 0.779]
+MRR: 0.2101745205734584
+MAP: 0.18065672619047612
+nDCG: 0.24596580747850103
+clusterID:2
+2022-02-20 16:25:18.360991
+2022-02-20 16:28:08.889619
+Recall: [0.294, 0.416, 0.615, 0.708, 0.774]
+MRR: 0.19892058397364318
+MAP: 0.17080923280423269
+nDCG: 0.23444367895969995
+clusterID:3
+2022-02-20 16:28:18.301532
+2022-02-20 16:31:13.386404
+Recall: [0.279, 0.391, 0.579, 0.666, 0.742]
+MRR: 0.18813810692049007
+MAP: 0.16066336640211626
+nDCG: 0.22078317942097267
+clusterID:4
+2022-02-20 16:31:22.864519
+2022-02-20 16:34:18.650350
+Recall: [0.253, 0.368, 0.558, 0.648, 0.726]
+MRR: 0.17681809835011422
+MAP: 0.14903277777777768
+nDCG: 0.20541475432902043

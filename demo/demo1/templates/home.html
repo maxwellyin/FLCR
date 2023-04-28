@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} A Lightweight and Explainable Citation Recommendation System {% endblock %}
+
+{% block content %}
+
+<h1>A Lightweight and Explainable Citation Recommendation System</h1>
+
+<h2>Abstract</h2>
+<p>The increased pressure of publications makes it more and more difficult for researchers to find appropriate papers to cite quickly and accurately. Context-aware citation recommendation, which can provide users suggestions mainly based on local citation contexts, has been shown to be helpful to alleviate this problem. However, previous works mainly use RNN models and their variance, which tend to be highly complicated with heavy-weight computation. In this paper, we propose a lightweight and explainable model that is quick to train and obtains high performance. Our model is based on a pre-trained sentence embedding model and trained with triplet loss. Quantitative results on the benchmark dataset reveal that our model achieves impressive performance with or without metadata. Qualitative evidence shows that our model pays different levels of attention to adequate parts of citation contexts and metadata, suggesting that our method is explainable and more trustable. </p>
+
+<a href="/demo">Try our Demo</a>
+
+{% endblock %}
