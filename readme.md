@@ -1,4 +1,4 @@
-# readme
+# A fast local citation recommendation algorithm scalable to multi-topics
 
 ## v2
 
