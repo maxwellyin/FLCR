@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} Author {% endblock %}
+
+{% block content %}
+<style>
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    </style>
+    <img src="{{url_for('static', filename='author.jpg')}}" alt="Maxwell">
+{% endblock %}

@@ -1,0 +1,1 @@
+`cnNum30_299.pt` change the number of neighbors used in `net.py` to make `citationSet` from 99 to 30.

@@ -1,0 +1,123 @@
+Record:
+
+employ negative and positive mining strategies
+it's already good enough after one round, 
+thus the third round doesn't show improvement over the second round.
+k_list = [5,10,30,50,80]
+second round:
+step: 299
+Recall: [0.398, 0.483, 0.623, 0.683, 0.734]
+MRR: 0.28298904119090845
+MAP: 0.2903876190476189
+nDCG: 0.3336208565659043
+
+step: 99
+Recall: [0.389, 0.49, 0.622, 0.681, 0.735]
+MRR: 0.2752897543988299
+MAP: 0.27812352418745284
+nDCG: 0.3282269796735839
+
+step: 199
+Recall: [0.386, 0.481, 0.624, 0.682, 0.723]
+MRR: 0.27931817347274585
+MAP: 0.28709980820105785
+nDCG: 0.33142028395189804
+
+third round:
+step: 99
+Recall: [0.385, 0.472, 0.619, 0.679, 0.731]
+MRR: 0.27452896645136043
+MAP: 0.2799763756613755
+nDCG: 0.3244715993776979
+
+step: 199
+Recall: [0.384, 0.478, 0.614, 0.675, 0.736]
+MRR: 0.2705274691907727
+MAP: 0.2751607936507935
+nDCG: 0.3228135672311541
+
+step: 299
+Recall: [0.388, 0.475, 0.591, 0.669, 0.736]
+MRR: 0.27605694590834107
+MAP: 0.286711951058201
+nDCG: 0.32844163580485014
+
+------------------------------------------------------------------------------
+use all ground truth papers for recall computation
+
+k_list = [5,10,30,50,80]
+recall: [0.322, 0.413, 0.556, 0.619, 0.679]
+MRR: 0.20570700806876113
+MAP: 0.20971212962962948
+nDCG: 0.2566595281896502
+
+100 => 10 clusters
+kcList = [1,3,5]
+Cluster recall: [0.308, 0.545, 0.633] //Birch
+---------------------------------------------------------------------------------------
+self.context_embedding = nn.Linear(CONTEXT_LENGTH*BERT_SIZE, 2*BERT_SIZE)
+self.cited_embedding = nn.Linear(CITED_SIZE*BERT_SIZE, 2*BERT_SIZE)
+Only using title
+ALPHA = 0.5
+[0.04, 0.075, 0.119, 0.151, 0.189]
+ALPHA = 1
+[0.035, 0.056, 0.111, 0.136, 0.171]
+[0.046, 0.057, 0.116, 0.153, 0.194]
+ALPHA = 5
+Recall@k = [0.032, 0.053, 0.091, 0.111, 0.153]
+ALPHA = 10
+Recall@k = [0.021, 0.034, 0.073, 0.1, 0.131]
+Recall@k = [0.028, 0.042, 0.075, 0.105, 0.135]
+ALPHA = 20
+Recall@k = [0.016, 0.025, 0.059, 0.078, 0.107]
+
+Use title and abstract
+ALPHA = 0.1
+[0.061, 0.088, 0.156, 0.2, 0.252]
+ALPHA = 0.5
+[0.072, 0.104, 0.178, 0.229, 0.291]
+[0.074, 0.103, 0.171, 0.224, 0.284]
+[0.098, 0.152, 0.267, 0.33, 0.378]  (full data, 10 epoches)
+[0.13, 0.186, 0.287, 0.357, 0.415]  (full data, 20 epoches)
+[0.115, 0.177, 0.302, 0.374, 0.428] (full data, 30 epoches)
+[0.14, 0.199, 0.307, 0.395, 0.452]  (full data, 40 epoches)
+[0.133, 0.192, 0.295, 0.365, 0.426] (full data, 50 epoches)
+
+[0.083, 0.139, 0.24, 0.299, 0.366]  (attention)
+ALPHA = 1
+[0.062, 0.087, 0.176, 0.229, 0.289]
+
+------------------------------------------------------------------------------------------------
+self.context_embedding = nn.Sequential(
+            nn.Linear(CONTEXT_LENGTH*BERT_SIZE, 4*BERT_SIZE),
+            nn.ReLU(),
+            nn.Linear(4*BERT_SIZE, 2*BERT_SIZE)
+        )
+
+        self.cited_embedding = nn.Sequential(
+            nn.Linear(CITED_SIZE*BERT_SIZE, 4*BERT_SIZE),
+            nn.ReLU(),
+            nn.Linear(4*BERT_SIZE, 2*BERT_SIZE)
+        )
+        
+ALPHA = 0.5
+[0.017, 0.03, 0.07, 0.108, 0.143]
+ALPHA = 10
+[0.031, 0.044, 0.086, 0.122, 0.172]
+
+---------------------------------------------------------------------------------------
+self.context_embedding = nn.Sequential(
+            nn.Linear(CONTEXT_LENGTH*BERT_SIZE, 4*BERT_SIZE),
+            nn.ReLU(),
+            nn.Dropout(),
+            nn.Linear(4*BERT_SIZE, 2*BERT_SIZE)
+        )
+
+        self.cited_embedding = nn.Sequential(
+            nn.Linear(CITED_SIZE*BERT_SIZE, 4*BERT_SIZE),
+            nn.ReLU(),
+            nn.Dropout(),
+            nn.Linear(4*BERT_SIZE, 2*BERT_SIZE)
+        )
+ALPHA = 0.5
+[0.012, 0.021, 0.06, 0.087, 0.116]

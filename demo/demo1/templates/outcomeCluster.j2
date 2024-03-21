@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Recommendation Cluster {% endblock %}
+
+{% block content %}
+
+<h1>Original text</h1>
+
+<p>
+{{text}}
+</p>
+
+<h1>Recommendation</h1>
+{% for i in range(candidateClusters|length) %}
+    <p><b>Cluster {{i}}:</b></p>
+    {% for candidate in candidateClusters[i]%}
+        <p>{% print(candidate) %}</p>
+    {% endfor %}
+{% endfor %}
+
+<a href="{{url_for('demo', text=text)}}">Return</a>
+
+{% endblock %}

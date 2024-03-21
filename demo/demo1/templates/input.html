@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Demo {% endblock %}
+
+{% block content %}
+
+<h1>Demo</h1>
+
+<p>NOTE: Due to the limitation of resource, currently we only train our model on computer science paper from arxiv. Thus we recommend you input contexts related to computer science</p>
+
+<form action="#" method="POST">
+  <label for="fname">Please input your context:</label><br>
+  <textarea  type="text" name="text" rows="10" cols="100" required></textarea><br>
+  <br>
+  <input type="submit" name="submit_button" value="submit">
+  <input type="submit" name="submit_button" value="cluster">
+</form> 
+
+<p>Please input the citation contexts then click submit.</p>
+
+<a href="{{url_for('home')}}">Home</a>
+
+{% endblock %}
