@@ -1,39 +1,60 @@
-from flask import Flask,render_template,url_for,redirect,request,session
-import network
+from urllib.parse import urlencode
+from pathlib import Path
 
-PATH_TO_CITED = "./data/cited.pkl"
-PATH_TO_CITED_ENCODE = "./data/cited_encode.pkl"
-COLORS = ['red', 'orange', 'green', 'blue', 'purple']
-TRIM_NUM = 2
+from fastapi import FastAPI, Form, Request
+from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.templating import Jinja2Templates
 
-app = Flask(__name__)
+try:
+    from . import network
+except ImportError:
+    import network
 
-@app.route('/')
-@app.route('/home')
-def home():
-    return render_template('home.html')
 
-@app.route('/demo', methods=['GET', 'POST'])
-@app.route('/demo/input', methods=['GET', 'POST'])
-def demo():
-    if request.method == 'POST':
-        text = request.form['text']
-        if request.form['submit_button'] == "submit":
-            return redirect(url_for("outcome", text=text))
-        else:
-            return redirect(url_for("outcomeCluster", text=text))
-    return render_template('input.html')
+APP_DIR = Path(__file__).resolve().parent
 
-@app.route('/demo/outcome/<text>/')
-def outcome(text):
+
+app = FastAPI()
+templates = Jinja2Templates(directory=str(APP_DIR / "templates"))
+
+
+def render_template(request: Request, template_name: str, **context):
+    return templates.TemplateResponse(request, template_name, context)
+
+
+@app.get("/", response_class=HTMLResponse, name="home")
+@app.get("/home", response_class=HTMLResponse)
+async def home(request: Request):
+    return render_template(request, "home.html")
+
+
+@app.get("/demo", response_class=HTMLResponse, name="demo")
+@app.get("/demo/input", response_class=HTMLResponse)
+async def demo(request: Request):
+    return render_template(request, "input.html")
+
+
+@app.post("/demo")
+@app.post("/demo/input")
+async def demo_submit(request: Request, text: str = Form(...), submit_button: str = Form(...)):
+    route_name = "outcome" if submit_button == "submit" else "outcome_cluster"
+    query = urlencode({"text": text})
+    redirect_url = f"{request.url_for(route_name)}?{query}"
+    return RedirectResponse(url=redirect_url, status_code=303)
+
+
+@app.get("/demo/outcome", response_class=HTMLResponse, name="outcome")
+async def outcome(request: Request, text: str):
     candidates = network.recommend(text)
-    return render_template('outcome.j2', text=text, candidates=candidates)
+    return render_template(request, "outcome.j2", text=text, candidates=candidates)
 
-@app.route('/demo/outcomeCluster/<text>/')
-def outcomeCluster(text):
+
+@app.get("/demo/outcomeCluster", response_class=HTMLResponse, name="outcome_cluster")
+async def outcome_cluster(request: Request, text: str):
     candidateClusters = network.recommendCluster(text)
-    return render_template('outcomeCluster.j2', text=text, candidateClusters=candidateClusters)
+    return render_template(request, "outcomeCluster.j2", text=text, candidateClusters=candidateClusters)
 
-@app.route('/author')
-def author():
-    return render_template('author.html')
+
+@app.get("/author", response_class=HTMLResponse, name="author")
+async def author(request: Request):
+    return render_template(request, "author.html")

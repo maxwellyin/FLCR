@@ -2,11 +2,11 @@ import pickle
 
 import pandas as pd
 import torch
-from sklearn.neighbors import KDTree
 from torch.utils.data import DataLoader, Dataset
 
 from flcr import model
-from flcr.config import BATCH_SIZE, CHECK_POINT, CITED_MAP_PATH, DEVICE, NUM_WORKERS, SMALL_MAG, TREE_PATH
+from flcr.config import BATCH_SIZE, CHECK_POINT, CITED_MAP_PATH, DEVICE, INDEX_PATH, NUM_WORKERS, SMALL_MAG
+from flcr.search import build_index, save_index
 
 
 class MagSet(Dataset):
@@ -42,11 +42,10 @@ if __name__ == "__main__":
     retrieval_model.load_state_dict(torch.load(CHECK_POINT, map_location=DEVICE))
 
     cited_maps = encode_cited(mag_loader, retrieval_model)
-    TREE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    INDEX_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     with open(CITED_MAP_PATH, "wb") as f:
         pickle.dump(cited_maps.cpu(), f)
 
-    tree = KDTree(cited_maps.cpu(), metric="euclidean")
-    with open(TREE_PATH, "wb") as f:
-        pickle.dump(tree, f)
+    index = build_index(cited_maps)
+    save_index(index, INDEX_PATH)

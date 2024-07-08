@@ -2,16 +2,14 @@ import datetime
 import math
 import pickle
 import sqlite3
-from functools import partial
-from multiprocessing import Pool
 
-import numpy as np
 import pandas as pd
 import torch
 from torch.utils.data import DataLoader, Dataset
 
 from flcr import model
-from flcr.config import BATCH_SIZE, CHECK_POINT, DEVICE, NUM_WORKERS, SMALL_MAG, SAMPLES, TORCH_SEED, TREE_PATH
+from flcr.config import BATCH_SIZE, CHECK_POINT, DEVICE, INDEX_PATH, NUM_WORKERS, SMALL_MAG, SAMPLES, TORCH_SEED
+from flcr.search import load_index, search_index
 
 
 PART = 1000
@@ -71,8 +69,7 @@ def encode_citing(recall_test_loader, retrieval_model: model.Net, device=DEVICE)
     return torch.cat(embeddings, dim=0)
 
 
-with open(TREE_PATH, "rb") as f:
-    tree = pickle.load(f)
+index = load_index(INDEX_PATH)
 
 small_mag = pd.read_pickle(SMALL_MAG)
 dataset = model.citationSet(SAMPLES, small_mag)
@@ -95,23 +92,12 @@ retrieval_model = model.Net().to(DEVICE)
 retrieval_model.load_state_dict(torch.load(CHECK_POINT, map_location=DEVICE))
 
 
-def find_neighbor(i, batch_size, citing_maps, k=100):
-    low = i * batch_size
-    up = min((i + 1) * batch_size, len(citing_maps))
-    return tree.query(citing_maps[low:up], k=k, return_distance=False)
-
-
 def compute_candidates(citing_maps):
-    batch_size = 100
     partial_maps = citing_maps[:PART]
-    length = len(partial_maps) // batch_size
-    if len(partial_maps) % batch_size != 0:
-        length += 1
     print(datetime.datetime.now())
-    with Pool(NUM_WORKERS) as pool:
-        results = pool.map(partial(find_neighbor, batch_size=batch_size, citing_maps=partial_maps), range(length))
+    _, idxes = search_index(index, partial_maps, k=100)
     print(datetime.datetime.now())
-    return np.concatenate(results, axis=0)
+    return idxes
 
 
 def compute_metrics(candidates):

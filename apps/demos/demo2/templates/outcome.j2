@@ -11,9 +11,9 @@
 
 <h1>Recommendation</h1>
 {% for candidate in candidates %}
-    <p>{% print(candidate) %}</p>
+    <p>{{ candidate }}</p>
 {% endfor %}
 
-<a href="{{url_for('demo', text=text)}}">Return</a>
+<a href="{{ url_for('demo') }}">Return</a>
 
 {% endblock %}
