@@ -34,9 +34,12 @@ dill==0.3.4
 # en-core-web-sm==3.0.0
 entrypoints==0.3
 fastparquet==0.7.1
+faiss-cpu
 filelock==3.0.12
-Flask==1.1.2
 fsspec==2022.1.0
+fastapi
+python-multipart
+uvicorn
 google-auth==1.28.0
 google-auth-oauthlib==0.4.4
 grpcio==1.36.1

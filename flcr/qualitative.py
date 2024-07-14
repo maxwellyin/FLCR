@@ -1,5 +1,3 @@
-import pickle
-
 import nltk
 import numpy as np
 import pandas as pd
@@ -7,7 +5,8 @@ import torch
 from sentence_transformers import SentenceTransformer
 
 from flcr import model
-from flcr.config import BATCH_SIZE, BERT_SIZE, CHECK_POINT, CHECK_NAME, CONTEXT_LENGTH, DATA_DIR, DEVICE, NUM_WORKERS, SMALL_MAG, TREE_PATH
+from flcr.config import BERT_SIZE, CHECK_POINT, CHECK_NAME, CONTEXT_LENGTH, DATA_DIR, DEVICE, INDEX_PATH, SMALL_MAG
+from flcr.search import load_index, search_index
 
 
 def read_raw_string(in_string: str, sentence_model: SentenceTransformer):
@@ -21,13 +20,13 @@ def read_raw_string(in_string: str, sentence_model: SentenceTransformer):
     return torch.tensor(sentence_embeddings).reshape(-1).unsqueeze(dim=0).to(DEVICE)
 
 
-def recommend_batch(context: torch.Tensor, tree, retrieval_model, small_mag, k=10):
+def recommend_batch(context: torch.Tensor, index, retrieval_model, small_mag, k=10):
     with torch.no_grad():
         context_batch = context.repeat([5, 1])
-        cluster_id = torch.IntTensor(range(5))
+        cluster_id = torch.arange(5, device=DEVICE)
         cluster_emb = retrieval_model.clusterEmbedding(cluster_id)
         embedding = retrieval_model.context_embedding(torch.cat([context_batch, cluster_emb], dim=1)).cpu()
-    _, idxes = tree.query(embedding, k=k)
+    _, idxes = search_index(index, embedding, k=k)
     return [[title for title in small_mag.loc[idxes[i], "paperTitle"]] for i in range(idxes.shape[0])]
 
 
@@ -35,8 +34,7 @@ small_mag = pd.read_pickle(SMALL_MAG)
 retrieval_model = model.Net().to(DEVICE)
 retrieval_model.load_state_dict(torch.load(CHECK_POINT, map_location=DEVICE))
 
-with open(TREE_PATH, "rb") as f:
-    tree = pickle.load(f)
+index = load_index(INDEX_PATH)
 
 sentence_model = SentenceTransformer(str(DATA_DIR / "all-mpnet-base-v2"), device=DEVICE)
 example = (
@@ -46,6 +44,6 @@ example = (
 )
 
 print(f"Using retrieval index: {CHECK_NAME}")
-for i, titles in enumerate(recommend_batch(read_raw_string(example, sentence_model), tree, retrieval_model, small_mag)):
+for i, titles in enumerate(recommend_batch(read_raw_string(example, sentence_model), index, retrieval_model, small_mag)):
     print(f"group {i}:")
     print(titles)

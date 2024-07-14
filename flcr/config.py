@@ -21,7 +21,7 @@ SMALL_MAG = LEGACY_DIR / "v3" / "check_point" / "smallMag2.pkl"
 CHECK_STEP = 299
 CHECK_NAME = f"base{CHECK_STEP}"
 CHECK_POINT = CHECKPOINT_DIR / "good" / f"{CHECK_NAME}.pt"
-TREE_PATH = CHECKPOINT_DIR / f"tree_{CHECK_NAME}.pkl"
+INDEX_PATH = CHECKPOINT_DIR / f"faiss_{CHECK_NAME}.index"
 CITED_MAP_PATH = CHECKPOINT_DIR / f"citedMap_{CHECK_NAME}.pkl"
 
 BERT_SIZE = 768

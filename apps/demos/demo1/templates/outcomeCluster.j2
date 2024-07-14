@@ -13,10 +13,10 @@
 {% for i in range(candidateClusters|length) %}
     <p><b>Cluster {{i}}:</b></p>
     {% for candidate in candidateClusters[i]%}
-        <p>{% print(candidate) %}</p>
+        <p>{{ candidate }}</p>
     {% endfor %}
 {% endfor %}
 
-<a href="{{url_for('demo', text=text)}}">Return</a>
+<a href="{{ url_for('demo') }}">Return</a>
 
 {% endblock %}

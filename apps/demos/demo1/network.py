@@ -1,6 +1,7 @@
 import pickle
 from pathlib import Path
 
+import faiss
 import torch
 import torch.nn as nn
 import pandas as pd
@@ -18,6 +19,7 @@ SAMPLES = ROOT_DIR / "data" / "samples.pkl"
 SMALL_MAG = ROOT_DIR / "data" / "smallMagAfterFilter.pkl"
 CHECK_STEP = 299
 CHECK_POINT = f"good/second{CHECK_STEP}.pt"
+INDEX_PATH = APP_DIR / "resource" / f"tree{CHECK_STEP}.index"
 BERT_SIZE = 768
 LEFT_SCOPE = 3
 REGHT_SCOPE = 3
@@ -29,6 +31,13 @@ BATCH_SIZE = 128
 NUM_WORKERS = 12
 ALPHA = 0.5
 EPOCHES = 10
+
+
+def search_index(index, queries, k):
+    if isinstance(queries, torch.Tensor):
+        queries = queries.detach().cpu().numpy()
+    distances, idxes = index.search(np.ascontiguousarray(queries, dtype=np.float32), k)
+    return distances, idxes
 
 # %%
 class Net(nn.Module):
@@ -48,8 +57,7 @@ class Net(nn.Module):
 smallMag = pd.read_pickle(SMALL_MAG)
 model = Net().to(DEVICE)
 model.load_state_dict(torch.load(APP_DIR / "resource" / CHECK_POINT, map_location=DEVICE))
-with open(APP_DIR / "resource" / f"tree{CHECK_STEP}.pkl", 'rb') as f:
-    tree = pickle.load(f)
+tree = faiss.read_index(str(INDEX_PATH))
 with open(APP_DIR / "resource" / f"citedMap{CHECK_STEP}.pkl", 'rb') as f:
     citedMap = pickle.load(f)
 sBert = SentenceTransformer(str(ROOT_DIR / "data" / "all-mpnet-base-v2"), device=DEVICE)
@@ -65,7 +73,7 @@ def recommend(inString: str, k=10):
     context = torch.tensor(sEmbs).reshape(-1).unsqueeze(dim=0).to(DEVICE)
     with torch.no_grad():
         emb = model.context_embedding(context).cpu()
-    idxes = tree.query(emb, k=k, return_distance=False)
+    _, idxes = search_index(tree, emb, k)
 
     outcomes = smallMag.loc[idxes[0], 'paperTitle'].tolist()
 
@@ -81,7 +89,7 @@ def recommendCluster(inString: str, k=2000, n_clusters=10, display=3):
     context = torch.tensor(sEmbs).reshape(-1).unsqueeze(dim=0).to(DEVICE)
     with torch.no_grad():
         emb = model.context_embedding(context).cpu()
-    idxes = tree.query(emb, k=k, return_distance=False)
+    _, idxes = search_index(tree, emb, k)
 
     df = smallMag.iloc[idxes[0]]
     embs = citedMap[idxes[0]]

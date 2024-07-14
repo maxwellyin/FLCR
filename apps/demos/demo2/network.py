@@ -1,6 +1,6 @@
-import pickle
 from pathlib import Path
 
+import faiss
 import torch
 import torch.nn as nn
 import pandas as pd
@@ -13,6 +13,8 @@ ROOT_DIR = APP_DIR.parent.parent.parent
 
 DEVICE = torch.device('cpu')
 SMALL_MAG = APP_DIR / "resource" / "v3smallMag2.pkl"
+BASE_INDEX_PATH = APP_DIR / "resource" / "v3tree299.index"
+CLUSTER_INDEX_PATH = APP_DIR / "resource" / "v5tree_cnNum30_299.index"
 
 BERT_SIZE = 768
 LEFT_SCOPE = 3
@@ -26,6 +28,13 @@ BATCH_SIZE = 128
 NUM_WORKERS = 12
 ALPHA = 0.5
 EPOCHES = 10
+
+
+def search_index(index, queries, k):
+    if isinstance(queries, torch.Tensor):
+        queries = queries.detach().cpu().numpy()
+    distances, idxes = index.search(np.ascontiguousarray(queries, dtype=np.float32), k)
+    return distances, idxes
 
 # %%
 class Net(nn.Module):
@@ -62,10 +71,8 @@ model = Net().to(DEVICE)
 model.load_state_dict(torch.load(APP_DIR / "resource" / "v3second299.pt", map_location=DEVICE))
 clusterModel = ClusterNet().to(DEVICE)
 clusterModel.load_state_dict(torch.load(APP_DIR / "resource" / "v5cnNum30_299.pt", map_location=DEVICE))
-with open(APP_DIR / "resource" / "v3tree299.pkl", 'rb') as f:
-    tree = pickle.load(f)
-with open(APP_DIR / "resource" / "v5tree_cnNum30_299.pkl", 'rb') as f:
-    clusterTree = pickle.load(f)
+tree = faiss.read_index(str(BASE_INDEX_PATH))
+clusterTree = faiss.read_index(str(CLUSTER_INDEX_PATH))
 sBert = SentenceTransformer(str(ROOT_DIR / "data" / "all-mpnet-base-v2"), device=DEVICE)
 
 def recommend(inString: str, model = model, k=10):
@@ -79,7 +86,7 @@ def recommend(inString: str, model = model, k=10):
     context = torch.tensor(sEmbs).reshape(-1).unsqueeze(dim=0).to(DEVICE)
     with torch.no_grad():
         emb = model.context_embedding(context).cpu()
-    idxes = tree.query(emb, k=k, return_distance=False)
+    _, idxes = search_index(tree, emb, k)
 
     outcomes = smallMag.loc[idxes[0], 'paperTitle'].tolist()
 
@@ -101,11 +108,11 @@ def readRawString(inString: str):
 def recommendBatch(context:torch.tensor, model = clusterModel, k=10):
     with torch.no_grad():
         context2 = context.repeat([5,1])
-        clusterID = torch.IntTensor(range(5))
+        clusterID = torch.arange(5, device=DEVICE)
         clusterEmb = model.clusterEmbedding(clusterID)
         context3 = torch.cat([context2, clusterEmb], dim=1)
         emb = model.context_embedding(context3).cpu()
-    distances, idxes = clusterTree.query(emb, k=k)
+    _, idxes = search_index(clusterTree, emb, k)
     clusterTitles = []
     for i in range(idxes.shape[0]):
         titles = []
