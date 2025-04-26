@@ -23,6 +23,7 @@
 
 - Designed for million-scale passage retrieval
 - Efficient ANN search using FAISS indexing
+- Main pipeline uses an HNSW FAISS index for fast approximate nearest-neighbor retrieval
 - Low-latency query serving via prebuilt index
 - Significantly faster than naive pairwise similarity search
 
@@ -120,6 +121,7 @@ artifacts/
 1. Prepare dataset and embedding assets
 2. Train retrieval model
 3. Build FAISS index
+   This rebuild is required after changing index parameters or index type.
 4. Run evaluation
 5. Launch demo
 
