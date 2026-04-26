@@ -2,6 +2,10 @@
 
 🚀 A production-style semantic retrieval system for citation recommendation.
 
+This repository corresponds to the paper
+[A fast local citation recommendation algorithm scalable to multi-topics](https://doi.org/10.1016/j.eswa.2023.122031),
+published in *Expert Systems with Applications* (March 15, 2024).
+
 - 📄 Large-scale retrieval over scientific documents  
 - ⚡ FAISS-based nearest neighbor search for low-latency serving  
 - 🧠 Dual-encoder embedding model with hard-negative training  
